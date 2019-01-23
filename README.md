@@ -28,10 +28,10 @@ This project is designed to help you make your own projects that interact with t
     console.log( await cp.coin("btc-bitcoin") );
     
     // Get 24h OHLC candle (USD,BTC)
-    console.log( await cp.OHLCVLatest() );
+    console.log( await cp.candle() );
     
     // Get Today's OHLC candle: rolls over at 23:59:59 (USD,BTC)
-    console.log( await cp.OHLCVToday() );
+    console.log( await cp.today() );
     
     // Get tickers for all coins (USD,BTC,ETH)
     console.log( await cp.tickers() );
