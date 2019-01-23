@@ -98,12 +98,12 @@
     };
 
     // Get 24h OHLC candle (USD,BTC)
-    exports.OHLCVLatest = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
+    exports.candle = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
         return request( `/coins/${id}/ohlcv/latest/`, params );
     };
 
     // Get Today's OHLC candle: rolls over at 23:59:59 (USD,BTC)
-    exports.OHLCVToday = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
+    exports.today = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
         return request( `/coins/${id}/ohlcv/today/`, params );
     };
 
