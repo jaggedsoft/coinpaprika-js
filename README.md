@@ -77,6 +77,17 @@ This project is designed to help you make your own projects that interact with t
 } )();
 ```
 
+#### Browser usage
+```html
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="coinpaprika.js"></script>
+<script>
+    (async () => {
+        console.log(await cp.global());
+    })();
+</script>
+```
+
 #### Documentation
 See https://api.coinpaprika.com
 
