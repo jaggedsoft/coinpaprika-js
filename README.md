@@ -17,23 +17,57 @@ This project is designed to help you make your own projects that interact with t
 ```js
 ( async () => {
     const cp = require( 'coinpaprika-js' );
+    // Get market overview data
     console.log( await cp.global() );
+    
+    // List coins
     console.log( await cp.coins() );
-    console.log( await cp.coin( "btc-bitcoin" ) );
+    
+    // Get coin by ID
+    console.log( await cp.coin("btc-bitcoin") );
+    
+    // Get 24h OHLC candle (USD,BTC)
     console.log( await cp.OHLCVLatest() );
+    
+    // Get Today's OHLC candle: rolls over at 23:59:59 (USD,BTC)
     console.log( await cp.OHLCVToday() );
+    
+    // Get tickers for all coins (USD,BTC,ETH)
     console.log( await cp.tickers() );
-    console.log( await cp.ticker( "btc-bitcoin", { quotes: "USD,BTC,ETH" } ) );
-    console.log( await cp.historical( "btc-bitcoin", "2019-01-20" ) );
+    
+    // Get ticker information for a specific coin (USD,BTC,ETH)
+    console.log( await cp.ticker("btc-bitcoin", { quotes: "USD,BTC,ETH" }) );
+    
+    // Get historical ticker information for a specific coin (USD,BTC,ETH)
+    console.log( await cp.historical("btc-bitcoin", "2019-01-20") );
+    
+    // List exchanges (USD,BTC,ETH,PLN)
     console.log( await cp.exchangeList() );
+    
+    // Get exchange by ID (USD,BTC)
     console.log( await cp.exchange("binance") );
-    console.log( await cp.exchangeMarkets( "binance" ) );
-    console.log( await cp.markets( "btc-bitcoin" ) );
-    console.log( await cp.exchanges( "btc-bitcoin" ) );
-    console.log( await cp.events( "btc-bitcoin" ) );
-    console.log( await cp.search( "btc" ) );
-    console.log( await cp.twitter( "btc-bitcoin" ) );
+    
+    // Get markets by exchange ID (USD,BTC,ETH,PLN)
+    console.log( await cp.exchangeMarkets("binance") );
+    
+    // Get markets by coin ID (USD,BTC,ETH,PLN)
+    console.log( await cp.markets("btc-bitcoin") );
+    
+    // Get exchanges by coin ID
+    console.log( await cp.exchanges("btc-bitcoin") );
+    
+    // Get events by coin ID
+    console.log( await cp.events("btc-bitcoin") );
+    
+    // Get tweets by coin ID
+    console.log( await cp.twitter("btc-bitcoin") );
+    
+    // Search
+    console.log( await cp.search("btc" ) );
 } )();
 ```
+
+#### Documentation
+See https://api.coinpaprika.com
 
 [![Views](http://hits.dwyl.io/jaggedsoft/coinpaprika-js.svg)](http://hits.dwyl.io/jaggedsoft/coinpaprika-js)
