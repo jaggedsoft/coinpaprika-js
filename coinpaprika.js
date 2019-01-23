@@ -55,17 +55,17 @@
         return request( `/coins/${id}/twitter`, params );
     };
 
-    // Get tickers for all coins (USD, BTC, ETH)
+    // Get tickers for all coins (USD,BTC,ETH)
     exports.tickers = async ( params = { quotes: "USD" } ) => {
         return request( '/tickers', params );
     };
 
-    // Get ticker information for a specific coin (USD, BTC, ETH)
+    // Get ticker information for a specific coin (USD,BTC,ETH)
     exports.ticker = async ( id, params = { quotes: "USD" } ) => {
         return request( `/coins/${id}`, params );
     };
 
-    // Get historical ticker information for a specific coin (USD, BTC, ETH)
+    // Get historical ticker information for a specific coin (USD,BTC,ETH)
     exports.historical = async ( id, start, params = { end: false, interval: "5m", quote: "USD", limit: 1000 } ) => {
         params.start = start;
         if ( typeof params.end == "undefined" || !params.end ) params.end = new Date().toISOString();
@@ -93,16 +93,31 @@
         return request( `/search`, params );
     };
 
-    // Get 24h OHLC candle (USD, BTC)
+    // Get 24h OHLC candle (USD,BTC)
     exports.OHLCVLatest = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
         return request( `/coins/${id}/ohlcv/latest/`, params );
     };
 
-    // Get Today's OHLC candle: rolls over at 23:59:59 (USD, BTC)
+    // Get Today's OHLC candle: rolls over at 23:59:59 (USD,BTC)
     exports.OHLCVToday = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
         return request( `/coins/${id}/ohlcv/today/`, params );
     };
 
-    // Tags https://api.coinpaprika.com/#tag/Tags
-    // People https://api.coinpaprika.com/#tag/People
+    // List tags
+    exports.tags = async ( fields = "coins,icos", params = {} ) => {
+        params.additional_fields = fields;
+        return request( "/tags", params );
+    };
+
+    // Get tag by ID
+    exports.tag = async ( id = "blockchain-service", fields = "coins,icos", params = {} ) => {
+        params.additional_fields = fields;
+        return request( `/tags/${id}`, params );
+    };
+
+    // Get people by ID
+    exports.people = async ( id = "vitalik-buterin", params = {} ) => {
+        return request( `/people/${id}`, params );
+    };
+
 } )();
