@@ -1,4 +1,7 @@
-## Usage
+#### Installation
+```
+npm install coinpaprika-js --save
+```
 
 This project is designed to help you make your own projects that interact with the [coinpaprika.com API](https://api.coinpaprika.com/) in javascript.
 
