@@ -17,6 +17,7 @@ This project is designed to help you make your own projects that interact with t
 ```js
 ( async () => {
     const cp = require( 'coinpaprika-js' );
+    
     // Get market overview data
     console.log( await cp.global() );
     
@@ -62,8 +63,17 @@ This project is designed to help you make your own projects that interact with t
     // Get tweets by coin ID
     console.log( await cp.twitter("btc-bitcoin") );
     
+    // Get person by ID
+    console.log( await cp.people("vitalik-buterin") );
+    
+    // List tags
+    console.log( await cp.tags("coins,icos") );
+    
+    // Get tag by ID
+    console.log( await cp.tag("blockchain-service") );
+    
     // Search
-    console.log( await cp.search("btc" ) );
+    console.log( await cp.search("btc") );
 } )();
 ```
 
