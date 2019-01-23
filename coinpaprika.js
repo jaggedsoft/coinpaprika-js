@@ -1,8 +1,12 @@
 ( async () => {
-    const axios = require( 'axios' );
+    if ( typeof module !== 'undefined' && module.exports ) {
+        const axios = require( 'axios' );
+    } else {
+        var exports = window.cp = {};
+    }
     const instance = axios.create( {
         baseURL: 'https://api.coinpaprika.com/v1',
-        headers: {
+        headers: typeof window !== 'undefined' ? {} : {
             'User-Agent': 'coinpaprika-js'
         },
         timeout: 30000
