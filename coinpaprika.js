@@ -94,7 +94,7 @@
     // Search
     exports.search = async ( query = "btc", params = { limit: 6, c: "currencies,exchanges,icos,people,tags" } ) => {
         params.q = query;
-        return request( `/search/`, params );
+        return request( `/search`, params );
     };
 
     // Get 24h OHLC candle (USD,BTC)
