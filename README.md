@@ -42,6 +42,9 @@ This project is designed to help you make your own projects that interact with t
     // Get historical ticker information for a specific coin (USD,BTC,ETH)
     console.log( await cp.historical("btc-bitcoin", "2019-01-20") );
     
+    // Get historical OHLCV information for a specific coin (USD,BTC)
+    console.log( await cp.candles("btc-bitcoin", "2019-01-01", { limit: 366 }) );
+    
     // List exchanges (USD,BTC,ETH,PLN)
     console.log( await cp.exchangeList() );
     
