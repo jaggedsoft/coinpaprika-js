@@ -75,6 +75,13 @@
         if ( typeof params.end == "undefined" || !params.end ) params.end = new Date().toISOString();
         return request( `/tickers/${id}/historical`, params );
     };
+    
+    // Get historical OHLCV information for a specific coin (USD,BTC)
+    exports.candles = async ( id, start, params = { end: false, quote: "USD", limit: 366 } ) => {
+        params.start = start;
+        if ( typeof params.end == "undefined" || !params.end ) params.end = new Date().toISOString();
+        return request( `/coins/${id}/ohlcv/historical`, params );
+    };
 
     // List exchanges (USD,BTC,ETH,PLN)
     exports.exchangeList = async ( params = { quotes: "USD" } ) => {
