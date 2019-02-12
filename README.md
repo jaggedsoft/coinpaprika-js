@@ -77,6 +77,15 @@ This project is designed to help you make your own projects that interact with t
     
     // Search
     console.log( await cp.search("btc") );
+    
+    // Get market depth by ID
+    console.log( await cp.depth("btc-bitcoin") );
+
+    // Get market capitalization (24h 7d 30d 1q 1y)
+    console.log( await cp.mcap("24h") );
+
+    // Get market capitalization excluding BTC (24h 7d 30d 1q 1y)
+    console.log( await cp.altcap("7d") );
 } )();
 ```
 
