@@ -1,6 +1,6 @@
 ( async () => {
     if ( typeof module !== 'undefined' && module.exports ) {
-        const axios = require( 'axios' );
+        var axios = require( 'axios' ), exports = module.exports;
     } else {
         var exports = window.cp = {};
     }
@@ -66,7 +66,7 @@
 
     // Get ticker information for a specific coin (USD,BTC,ETH)
     exports.ticker = async ( id, params = { quotes: "USD" } ) => {
-        return request( `/tickers/${id}`, params );
+        return request( `/coins/${id}`, params );
     };
 
     // Get historical ticker information for a specific coin (USD,BTC,ETH)
@@ -74,13 +74,6 @@
         params.start = start;
         if ( typeof params.end == "undefined" || !params.end ) params.end = new Date().toISOString();
         return request( `/tickers/${id}/historical`, params );
-    };
-    
-    // Get historical OHLCV information for a specific coin (USD,BTC)
-    exports.candles = async ( id, start, params = { end: false, quote: "USD", limit: 366 } ) => {
-        params.start = start;
-        if ( typeof params.end == "undefined" || !params.end ) params.end = new Date().toISOString();
-        return request( `/coins/${id}/ohlcv/historical`, params );
     };
 
     // List exchanges (USD,BTC,ETH,PLN)
@@ -106,12 +99,12 @@
 
     // Get 24h OHLC candle (USD,BTC)
     exports.candle = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
-        return request( `/coins/${id}/ohlcv/latest`, params );
+        return request( `/coins/${id}/ohlcv/latest/`, params );
     };
 
     // Get Today's OHLC candle: rolls over at 23:59:59 (USD,BTC)
     exports.today = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
-        return request( `/coins/${id}/ohlcv/today`, params );
+        return request( `/coins/${id}/ohlcv/today/`, params );
     };
 
     // List tags
@@ -129,6 +122,26 @@
     // Get people by ID
     exports.people = async ( id = "vitalik-buterin", params = {} ) => {
         return request( `/people/${id}`, params );
+    };
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    // UNSUPPORTED API ENDPOINTS:
+    // These are not documented on https://api.coinpaprika.com and could stop working at any time
+    //////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Get market depth by ID
+    exports.depth = async ( id = "btc-bitcoin", currency = "usd-us-dollars", params = {} ) => {
+        return request( `https://coinpaprika.com/ajax/transparency/markets-depth/${id}/${currency}/`, params );
+    };
+
+    // Get market capitalization (24h 7d 30d 1q 1y YTD MAX)
+    exports.mcap = async ( timeframe = "24h", params = {} ) => {
+        return request( `https://coinpaprika.com/overview/data/total/${timeframe}/`, params );
+    };
+
+    // Get market capitalization excluding BTC (24h 7d 30d 1q 1y YTD MAX)
+    exports.altcap = async ( timeframe = "24h", params = {} ) => {
+        return request( `https://coinpaprika.com/overview/data/totalExclude/${timeframe}/`, params );
     };
 
 } )();
