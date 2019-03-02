@@ -101,6 +101,13 @@
     exports.candle = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
         return request( `/coins/${id}/ohlcv/latest/`, params );
     };
+    
+    // Get historical OHLCV information for a specific coin (USD,BTC)
+    exports.candles = async ( id, start, params = { end: false, quote: "USD", limit: 366 } ) => {
+        params.start = start;
+        if ( typeof params.end == "undefined" || !params.end ) params.end = new Date().toISOString();
+        return request( `/coins/${id}/ohlcv/historical`, params );
+    };
 
     // Get Today's OHLC candle: rolls over at 23:59:59 (USD,BTC)
     exports.today = async ( id = "btc-bitcoin", params = { quote: "USD" } ) => {
