@@ -1,6 +1,6 @@
 {
   "name": "coinpaprika-js",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Coinpaprika Javascript API https://github.com/jaggedsoft/coinpaprika-js",
   "main": "coinpaprika.js",
   "dependencies": {
