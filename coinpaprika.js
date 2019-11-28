@@ -65,8 +65,8 @@
     };
 
     // Get ticker information for a specific coin (USD,BTC,ETH)
-    exports.ticker = async ( id, params = { quotes: "USD" } ) => {
-        return request( `/coins/${id}`, params );
+    exports.ticker = async ( id, params = {} ) => {
+        return request( `/ticker/${id}`, params );
     };
 
     // Get historical ticker information for a specific coin (USD,BTC,ETH)
