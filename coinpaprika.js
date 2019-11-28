@@ -76,6 +76,14 @@
         return request( `/tickers/${id}/historical`, params );
     };
 
+    // Convert 5k USDT BTC = 0.66 BTC
+    exports.convert = async ( amount, baseId, quoteId ) => {
+        params.base_currency_id = baseId;
+        params.quote_currency_id = quoteId;
+        params.amount = amount;
+        return request( `/price-converter`, params );
+    };
+
     // List exchanges (USD,BTC,ETH,PLN)
     exports.exchangeList = async ( params = { quotes: "USD" } ) => {
         return request( "/exchanges", params );
