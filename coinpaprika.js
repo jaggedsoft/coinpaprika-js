@@ -78,10 +78,7 @@
 
     // Convert 5k USDT BTC = 0.66 BTC
     exports.convert = async ( amount, baseId, quoteId ) => {
-        params.base_currency_id = baseId;
-        params.quote_currency_id = quoteId;
-        params.amount = amount;
-        return request( `/price-converter`, params );
+        return request( `/price-converter`, {base_currency_id:baseId, quote_currency_id:quoteId, amount} );
     };
 
     // List exchanges (USD,BTC,ETH,PLN)
