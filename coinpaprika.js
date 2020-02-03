@@ -108,8 +108,14 @@
     };
     
     // Get historical OHLCV information for a specific coin (USD,BTC)
-    exports.candles = async ( id, start, params = { end: false, quote: "USD", limit: 366 } ) => {
-        params.start = start;
+    exports.candles = async ( id, start = false, params = { end: false, quote: "USD", limit: 366 } ) => {
+        if ( !start ) {
+            let year_ago = new Date();
+            year_ago.setFullYear( year_ago.getFullYear() - 1 );
+            start = year_ago;
+        }
+        if ( typeof start == "string" ) start = new Date( start );
+        params.start = start.toISOString();
         if ( typeof params.end == "undefined" || !params.end ) params.end = new Date().toISOString();
         return request( `/coins/${id}/ohlcv/historical`, params );
     };
